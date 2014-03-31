@@ -1,0 +1,22 @@
+# depslib dependency file v1.0
+1395587789 source:c:\users\kevin mambu\desktop\sokoban\sokoban\main.c
+	<stdio.h>
+	<stdlib.h>
+	"plateau.h"
+
+1395779822 c:\users\kevin mambu\desktop\sokoban\sokoban\plateau.h
+
+1396297245 source:c:\users\kevin mambu\desktop\sokoban\sokoban\plateau.c
+	<stdlib.h>
+	<stdio.h>
+	"plateau.h"
+
+1396297114 source:c:\users\kevin mambu\desktop\sokoban\sokoban\partie.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"plateau.h"
+	"partie.h"
+
+1396296909 c:\users\kevin mambu\desktop\sokoban\sokoban\partie.h
+
