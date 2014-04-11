@@ -32,6 +32,10 @@
 			<Add option="-Wall" />
 		</Compiler>
 		<Unit filename="Sokoban Plateaux/test1.map" />
+		<Unit filename="editeur.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="editeur.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>

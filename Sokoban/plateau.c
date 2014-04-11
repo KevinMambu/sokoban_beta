@@ -60,7 +60,6 @@ void afficher_plateau(plateau_t * p)
 {
     int i;
     int j;
-    system("cls");
     for(i = 0; i < p -> h; i += 1)
     {
         for(j = 0; j < p -> l; j += 1)
@@ -157,10 +156,10 @@ plateau_t * charger_plateau(const char * filename)
 
         }
     }
-    /*if(!tester_plateau(res))
+    if(tester_plateau(res))
     {
         res = NULL;
-    }*/
+    }
     fclose(fichier);
     return res;
 }

@@ -4,7 +4,7 @@
 #include "plateau.h"
 #include "partie.h"
 
-partie_t * nouvelle_partie(const char * nom_fichier, const char * nom_joueur)
+partie_t * creer_partie(const char * nom_fichier, const char * nom_joueur)
 {
     int i;
     int j;
@@ -55,6 +55,7 @@ partie_t * nouvelle_partie(const char * nom_fichier, const char * nom_joueur)
         }
     }
 
+
     res -> joueur = (player_t *)malloc(sizeof(player_t));
     res -> joueur -> nom = (char *)malloc(sizeof(char)*(strlen(nom_joueur) + 1));
     res -> joueur -> nom = strcpy(res -> joueur -> nom, nom_joueur);
@@ -62,7 +63,7 @@ partie_t * nouvelle_partie(const char * nom_fichier, const char * nom_joueur)
     {
         for(j = 0; j < res -> plateau -> l; j += 1)
         {
-            if(res -> plateau -> statique[i][j] == 'P')
+            if(res -> plateau -> mobile[i][j] == 'P')
             {
                 res -> joueur -> x = i;
                 res -> joueur -> y = j;
@@ -185,48 +186,56 @@ void jouer_coup(partie_t * partie)
 			if (coup_autorise(partie, key) == 1)
 			{
 			partie ->joueur -> x -= 1;
+			partie ->nb_coups += 1;
 			}
 			break;
 		case 'Q':
 			if (coup_autorise(partie, key) == 1)
 			{
 			partie ->joueur -> x -= 1;
+			partie ->nb_coups += 1;
 			}
 			break;
 		case 'z':
 			if (coup_autorise(partie, key) == 1)
 			{
 			partie ->joueur -> y -= 1;
+			partie ->nb_coups += 1;
 			}
 			break;
 		case 'Z':
 			if (coup_autorise(partie, key) == 1)
 			{
 			partie ->joueur -> y -= 1;
+			partie ->nb_coups += 1;
 			}
 			break;
 		case 's':
 			if (coup_autorise(partie, key) == 1)
 			{
 			partie ->joueur -> y += 1;
+			partie ->nb_coups += 1;
 			}
 			break;
 		case 'S':
 			if (coup_autorise(partie, key) == 1)
 			{
 			partie ->joueur -> y += 1;
+			partie ->nb_coups += 1;
 			}
 			break;
 		case 'd':
 			if (coup_autorise(partie, key) == 1)
 			{
 			partie ->joueur -> x += 1;
+			partie ->nb_coups += 1;
 			}
 			break;
 		case 'D':
 			if (coup_autorise(partie, key) == 1)
 			{
 			partie ->joueur -> x += 1;
+			partie ->nb_coups += 1;
 			}
 			break;
 		default:
@@ -247,12 +256,9 @@ int partie_terminee(partie_t * partie)
         {
             for(j = 0; j < partie -> plateau -> l; j += 1)
             {
-                if(partie -> plateau -> mobile[i][j] == 'C')
+                if(partie -> plateau -> mobile[partie -> liste_arrivees[k][0]][partie -> liste_arrivees[k][1]] == 'C')
                 {
-                    if((i == partie -> liste_arrivees[k][0]) && (j == partie -> liste_arrivees[k][1]))
-                    {
-                        cmpt += 1;
-                    }
+                    cmpt += 1;
                 }
             }
         }
@@ -266,4 +272,27 @@ int partie_terminee(partie_t * partie)
     {
         return 0;
     }
+}
+
+void afficher_partie(partie_t * partie)
+{
+    system("cls");
+    printf("\n");
+    printf("Nom du joueur: %s\n\n", partie ->joueur->nom);
+    afficher_plateau(partie ->plateau);
+    printf("Nombre de coups: %d", partie->nb_coups);
+    printf("\n");
+
+}
+
+void nouvelle_partie(const char * nom_fichier, const char * nom_joueur)
+{
+    partie_t * res = creer_partie(nom_fichier, nom_joueur);
+    while(!partie_terminee(res))
+    {
+        afficher_partie(res);
+        jouer_coup(res);
+    }
+    printf("\n\n\n");
+    printf("Bravo! En %d coups!", res ->nb_coups);
 }
