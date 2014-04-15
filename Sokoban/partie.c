@@ -65,8 +65,8 @@ partie_t * creer_partie(const char * nom_fichier, const char * nom_joueur)
         {
             if(res -> plateau -> mobile[i][j] == 'P')
             {
-                res -> joueur -> x = i;
-                res -> joueur -> y = j;
+                res -> joueur -> x = j;
+                res -> joueur -> y = i;
             }
         }
     }
@@ -78,49 +78,49 @@ int coup_autorise(partie_t * partie, char c)
     switch(c)
 	{
 		case 'q':
-			if((contenu_case(partie -> plateau,(partie -> joueur -> x),(partie -> joueur -> y - 1)) != 'M')&& (partie -> joueur -> x != 0))
+			if((contenu_case(partie -> plateau,(partie -> joueur -> x - 1),(partie -> joueur -> y)) != 'M'))
 			{
 				return 1;
 			}
 			break;
 		case 'Q':
-			if((contenu_case(partie -> plateau,(partie -> joueur -> x),(partie -> joueur -> y - 1)) != 'M')&& (partie -> joueur -> x != 0))
+			if((contenu_case(partie -> plateau,(partie -> joueur -> x - 1),(partie -> joueur -> y)) != 'M'))
 			{
 				return 1;
 			}
 			break;
 		case 'z':
-			if((contenu_case(partie -> plateau,(partie -> joueur -> x - 1),(partie -> joueur -> y)) != 'M')&& (partie -> joueur -> y != 0))
+			if((contenu_case(partie -> plateau,(partie -> joueur -> x),(partie -> joueur -> y - 1)) != 'M'))
 			{
 				return 1;
 			}
 			break;
 		case 'Z':
-			if((contenu_case(partie -> plateau,(partie -> joueur -> x - 1),(partie -> joueur -> y)) != 'M')&& (partie -> joueur -> y != 0))
+			if((contenu_case(partie -> plateau,(partie -> joueur -> x),(partie -> joueur -> y - 1)) != 'M'))
 			{
 				return 1;
 			}
 			break;
 		case 's':
-			if((contenu_case(partie -> plateau,(partie -> joueur -> x + 1),(partie -> joueur -> y)) != 'M') && (partie -> joueur -> y != partie->plateau->h-1))
+			if((contenu_case(partie -> plateau,(partie -> joueur -> x),(partie -> joueur -> y + 1)) != 'M'))
 			{
 				return 1;
 			}
 			break;
 		case 'S':
-			if((contenu_case(partie -> plateau,(partie -> joueur -> x + 1),(partie -> joueur -> y + 1)) != 'M')&&(partie -> joueur -> y != partie->plateau->h-1))
+			if((contenu_case(partie -> plateau,(partie -> joueur -> x),(partie -> joueur -> y + 1)) != 'M'))
 			{
 				return 1;
 			}
 			break;
 		case 'd':
-			if((contenu_case(partie -> plateau,(partie -> joueur -> x),(partie -> joueur -> y + 1)) != 'M')&&(partie -> joueur -> y != partie->plateau->l-1))
+			if((contenu_case(partie -> plateau,(partie -> joueur -> x + 1),(partie -> joueur -> y)) != 'M'))
 			{
 				return 1;
 			}
 			break;
 		case 'D':
-			if((contenu_case(partie -> plateau,(partie -> joueur -> x),(partie -> joueur -> y + 1)) != 'M')&&(partie -> joueur -> y != partie->plateau->l-1))
+			if((contenu_case(partie -> plateau,(partie -> joueur -> x + 1),(partie -> joueur -> y)) != 'M'))
 			{
 				return 1;
 			}
@@ -149,64 +149,64 @@ void jouer_coup(partie_t * partie)
 	scanf("%c", &key);
 	switch(key)
 	{
-		case 'q':
-			if (coup_autorise(partie, key) == 1)
-			{
-                modifier_contenu_case(partie ->plateau, partie ->joueur -> y, partie ->joueur -> x, ' ');
-                partie ->joueur -> y -= 1;
-                partie ->nb_coups += 1;
-			}
-			break;
-		case 'Q':
-			if (coup_autorise(partie, key) == 1)
-			{
-                modifier_contenu_case(partie ->plateau, partie ->joueur -> y, partie ->joueur -> x, ' ');
-                partie ->joueur -> y -= 1;
-                partie ->nb_coups += 1;
-			}
-			break;
 		case 'z':
-			if (coup_autorise(partie, key) == 1)
+			if (coup_autorise(partie, key))
 			{
                 modifier_contenu_case(partie ->plateau, partie ->joueur -> y, partie ->joueur -> x, ' ');
-                partie ->joueur -> x -= 1;
+                partie ->joueur -> y -= 1;
                 partie ->nb_coups += 1;
 			}
 			break;
 		case 'Z':
-			if (coup_autorise(partie, key) == 1)
+			if (coup_autorise(partie, key))
+			{
+                modifier_contenu_case(partie ->plateau, partie ->joueur -> y, partie ->joueur -> x, ' ');
+                partie ->joueur -> y -= 1;
+                partie ->nb_coups += 1;
+			}
+			break;
+		case 'q':
+			if (coup_autorise(partie, key))
+			{
+                modifier_contenu_case(partie ->plateau, partie ->joueur -> y, partie ->joueur -> x, ' ');
+                partie ->joueur -> x -= 1;
+                partie ->nb_coups += 1;
+			}
+			break;
+		case 'Q':
+			if (coup_autorise(partie, key))
 			{
 			    modifier_contenu_case(partie ->plateau, partie ->joueur -> y, partie ->joueur -> x, ' ');
                 partie ->joueur -> x -= 1;
                 partie ->nb_coups += 1;
 			}
 			break;
-		case 's':
-			if (coup_autorise(partie, key) == 1)
-			{
-			    modifier_contenu_case(partie ->plateau, partie ->joueur -> y, partie ->joueur -> x, ' ');
-                partie ->joueur -> x += 1;
-                partie ->nb_coups += 1;
-			}
-			break;
-		case 'S':
-			if (coup_autorise(partie, key) == 1)
-			{
-			    modifier_contenu_case(partie ->plateau, partie ->joueur -> y, partie ->joueur -> x, ' ');
-                partie ->joueur -> x += 1;
-                partie ->nb_coups += 1;
-			}
-			break;
 		case 'd':
-			if (coup_autorise(partie, key) == 1)
+			if (coup_autorise(partie, key))
+			{
+			    modifier_contenu_case(partie ->plateau, partie ->joueur -> y, partie ->joueur -> x, ' ');
+                partie ->joueur -> x += 1;
+                partie ->nb_coups += 1;
+			}
+			break;
+		case 'D':
+			if (coup_autorise(partie, key))
+			{
+			    modifier_contenu_case(partie ->plateau, partie ->joueur -> y, partie ->joueur -> x, ' ');
+                partie ->joueur -> x += 1;
+                partie ->nb_coups += 1;
+			}
+			break;
+		case 's':
+			if (coup_autorise(partie, key))
 			{
 			    modifier_contenu_case(partie ->plateau, partie ->joueur -> y, partie ->joueur -> x, ' ');
                 partie ->joueur -> y += 1;
                 partie ->nb_coups += 1;
 			}
 			break;
-		case 'D':
-			if (coup_autorise(partie, key) == 1)
+		case 'S':
+			if (coup_autorise(partie, key))
 			{
 			    modifier_contenu_case(partie ->plateau, partie ->joueur -> y, partie ->joueur -> x, ' ');
                 partie ->joueur -> y += 1;
