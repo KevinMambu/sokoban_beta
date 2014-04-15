@@ -29,3 +29,33 @@
 
 1396292406 c:\users\kevin mambu\desktop\sokoban\sokoban\editeur.h
 
+1396292406 source:c:\users\kevin mambu\sokoban_beta\sokoban\editeur.c
+	<stdio.h>
+	<stdlib.h>
+	"plateau.h"
+	"editeur.h"
+
+1395779822 c:\users\kevin mambu\sokoban_beta\sokoban\plateau.h
+
+1396292406 c:\users\kevin mambu\sokoban_beta\sokoban\editeur.h
+
+1397552793 source:c:\users\kevin mambu\sokoban_beta\sokoban\main.c
+	<stdio.h>
+	<stdlib.h>
+	"plateau.h"
+	"partie.h"
+
+1397551655 c:\users\kevin mambu\sokoban_beta\sokoban\partie.h
+
+1397553439 source:c:\users\kevin mambu\sokoban_beta\sokoban\partie.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"plateau.h"
+	"partie.h"
+
+1397553239 source:c:\users\kevin mambu\sokoban_beta\sokoban\plateau.c
+	<stdlib.h>
+	<stdio.h>
+	"plateau.h"
+

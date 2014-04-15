@@ -3,8 +3,8 @@
 typedef struct player_s
 {
     char * nom;
-    int x;
-    int y;
+    unsigned int x;
+    unsigned int y;
 } player_t;
 
 typedef struct partie_s
@@ -24,6 +24,7 @@ int partie_terminee(partie_t * partie);
 int coup_autorise(partie_t * partie, char c);
 void jouer_coup(partie_t * partie);
 void afficher_partie(partie_t * partie);
+void infos(partie_t * partie);
 
 
 #endif // _PARTIE_

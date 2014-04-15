@@ -78,86 +78,55 @@ int coup_autorise(partie_t * partie, char c)
     switch(c)
 	{
 		case 'q':
-			if(contenu_case(partie -> plateau,(partie -> joueur -> x - 1),(partie -> joueur -> y)) != 'M')
+			if((contenu_case(partie -> plateau,(partie -> joueur -> x),(partie -> joueur -> y - 1)) != 'M')&& (partie -> joueur -> x != 0))
 			{
 				return 1;
-			}
-			else
-			{
-				return 0;
 			}
 			break;
 		case 'Q':
-			if(contenu_case(partie -> plateau,(partie -> joueur -> x - 1),(partie -> joueur -> y)) != 'M')
+			if((contenu_case(partie -> plateau,(partie -> joueur -> x),(partie -> joueur -> y - 1)) != 'M')&& (partie -> joueur -> x != 0))
 			{
 				return 1;
-			}
-			else
-			{
-				return 0;
 			}
 			break;
 		case 'z':
-			if(contenu_case(partie -> plateau,(partie -> joueur -> x),(partie -> joueur -> y - 1)) != 'M')
+			if((contenu_case(partie -> plateau,(partie -> joueur -> x - 1),(partie -> joueur -> y)) != 'M')&& (partie -> joueur -> y != 0))
 			{
 				return 1;
-			}
-			else
-			{
-				return 0;
 			}
 			break;
 		case 'Z':
-			if(contenu_case(partie -> plateau,(partie -> joueur -> x),(partie -> joueur -> y - 1)) != 'M')
+			if((contenu_case(partie -> plateau,(partie -> joueur -> x - 1),(partie -> joueur -> y)) != 'M')&& (partie -> joueur -> y != 0))
 			{
 				return 1;
-			}
-			else
-			{
-				return 0;
 			}
 			break;
 		case 's':
-			if(contenu_case(partie -> plateau,(partie -> joueur -> x),(partie -> joueur -> y + 1)) != 'M')
+			if((contenu_case(partie -> plateau,(partie -> joueur -> x + 1),(partie -> joueur -> y)) != 'M') && (partie -> joueur -> y != partie->plateau->h-1))
 			{
 				return 1;
-			}
-			else
-			{
-				return 0;
 			}
 			break;
 		case 'S':
-			if(contenu_case(partie -> plateau,(partie -> joueur -> x),(partie -> joueur -> y + 1)) != 'M')
+			if((contenu_case(partie -> plateau,(partie -> joueur -> x + 1),(partie -> joueur -> y + 1)) != 'M')&&(partie -> joueur -> y != partie->plateau->h-1))
 			{
 				return 1;
-			}
-			else
-			{
-				return 0;
 			}
 			break;
 		case 'd':
-			if(contenu_case(partie -> plateau,(partie -> joueur -> x + 1),(partie -> joueur -> y)) != 'M')
+			if((contenu_case(partie -> plateau,(partie -> joueur -> x),(partie -> joueur -> y + 1)) != 'M')&&(partie -> joueur -> y != partie->plateau->l-1))
 			{
 				return 1;
-			}
-			else
-			{
-				return 0;
 			}
 			break;
 		case 'D':
-			if(contenu_case(partie -> plateau,(partie -> joueur -> x + 1),(partie -> joueur -> y)) != 'M')
+			if((contenu_case(partie -> plateau,(partie -> joueur -> x),(partie -> joueur -> y + 1)) != 'M')&&(partie -> joueur -> y != partie->plateau->l-1))
 			{
 				return 1;
 			}
-			else
-			{
-				return 0;
-			}
 			break;
 	}
+	return 0;
 }
 
 void detruire_partie(partie_t * partie)
@@ -177,69 +146,73 @@ void detruire_partie(partie_t * partie)
 void jouer_coup(partie_t * partie)
 {
     char key;
-	modifier_contenu_case(partie ->plateau, partie ->joueur -> y, partie ->joueur -> x, ' ');
-	key = getchar();
-	getchar();
+	scanf("%c", &key);
 	switch(key)
 	{
 		case 'q':
 			if (coup_autorise(partie, key) == 1)
 			{
-			partie ->joueur -> x -= 1;
-			partie ->nb_coups += 1;
+                modifier_contenu_case(partie ->plateau, partie ->joueur -> y, partie ->joueur -> x, ' ');
+                partie ->joueur -> y -= 1;
+                partie ->nb_coups += 1;
 			}
 			break;
 		case 'Q':
 			if (coup_autorise(partie, key) == 1)
 			{
-			partie ->joueur -> x -= 1;
-			partie ->nb_coups += 1;
+                modifier_contenu_case(partie ->plateau, partie ->joueur -> y, partie ->joueur -> x, ' ');
+                partie ->joueur -> y -= 1;
+                partie ->nb_coups += 1;
 			}
 			break;
 		case 'z':
 			if (coup_autorise(partie, key) == 1)
 			{
-			partie ->joueur -> y -= 1;
-			partie ->nb_coups += 1;
+                modifier_contenu_case(partie ->plateau, partie ->joueur -> y, partie ->joueur -> x, ' ');
+                partie ->joueur -> x -= 1;
+                partie ->nb_coups += 1;
 			}
 			break;
 		case 'Z':
 			if (coup_autorise(partie, key) == 1)
 			{
-			partie ->joueur -> y -= 1;
-			partie ->nb_coups += 1;
+			    modifier_contenu_case(partie ->plateau, partie ->joueur -> y, partie ->joueur -> x, ' ');
+                partie ->joueur -> x -= 1;
+                partie ->nb_coups += 1;
 			}
 			break;
 		case 's':
 			if (coup_autorise(partie, key) == 1)
 			{
-			partie ->joueur -> y += 1;
-			partie ->nb_coups += 1;
+			    modifier_contenu_case(partie ->plateau, partie ->joueur -> y, partie ->joueur -> x, ' ');
+                partie ->joueur -> x += 1;
+                partie ->nb_coups += 1;
 			}
 			break;
 		case 'S':
 			if (coup_autorise(partie, key) == 1)
 			{
-			partie ->joueur -> y += 1;
-			partie ->nb_coups += 1;
+			    modifier_contenu_case(partie ->plateau, partie ->joueur -> y, partie ->joueur -> x, ' ');
+                partie ->joueur -> x += 1;
+                partie ->nb_coups += 1;
 			}
 			break;
 		case 'd':
 			if (coup_autorise(partie, key) == 1)
 			{
-			partie ->joueur -> x += 1;
-			partie ->nb_coups += 1;
+			    modifier_contenu_case(partie ->plateau, partie ->joueur -> y, partie ->joueur -> x, ' ');
+                partie ->joueur -> y += 1;
+                partie ->nb_coups += 1;
 			}
 			break;
 		case 'D':
 			if (coup_autorise(partie, key) == 1)
 			{
-			partie ->joueur -> x += 1;
-			partie ->nb_coups += 1;
+			    modifier_contenu_case(partie ->plateau, partie ->joueur -> y, partie ->joueur -> x, ' ');
+                partie ->joueur -> y += 1;
+                partie ->nb_coups += 1;
 			}
 			break;
-		default:
-			printf("\nLa touche n'a pas été reconnue\n");
 	}
 	modifier_contenu_case(partie -> plateau, partie ->joueur -> y, partie ->joueur -> x, 'P');
 }
@@ -278,7 +251,7 @@ void afficher_partie(partie_t * partie)
 {
     system("cls");
     printf("\n");
-    printf("Nom du joueur: %s\n\n", partie ->joueur->nom);
+    printf("Nom du joueur: %s (%dx%d)\n\n", partie ->joueur->nom, partie ->joueur->x, partie ->joueur->y);
     afficher_plateau(partie ->plateau);
     printf("Nombre de coups: %d", partie->nb_coups);
     printf("\n");
@@ -295,4 +268,38 @@ void nouvelle_partie(const char * nom_fichier, const char * nom_joueur)
     }
     printf("\n\n\n");
     printf("Bravo! En %d coups!", res ->nb_coups);
+    detruire_partie(res);
+}
+
+
+void infos(partie_t * partie)
+{
+    int i;
+    int j;
+    printf("Joueur: %s <%dx%d>", partie->joueur->nom, partie->joueur->x, partie->joueur->y);
+    printf("\n\n\nPlateau statique\n\n");
+    for(i = 0; i < partie ->plateau->h; i += 1)
+    {
+        for(j = 0; j < partie -> plateau -> l; j +=1)
+        {
+            printf("%c", partie->plateau->statique[i][j]);
+        }
+        printf("\n");
+    }
+    printf("\n\n\nPlateau mobile\n\n");
+    for(i = 0; i < partie ->plateau->h; i += 1)
+    {
+        for(j = 0; j < partie -> plateau -> l; j +=1)
+        {
+            printf("%c", partie->plateau->mobile[i][j]);
+        }
+        printf("\n");
+    }
+    printf("\n\n\nDimensions <%dx%d>\n\n", partie ->plateau->h, partie->plateau->l);
+    printf("\n\n\nCoordonées des points d'arrivees\n\n");
+    for(i = 0; i < partie->nb_arrivees; i += 1)
+    {
+        printf("<%dx%d>", partie->liste_arrivees[i][0], partie->liste_arrivees[i][1]);
+    }
+    printf("\n\n\nValidité du plateau: %d\n\n", tester_plateau(partie->plateau));
 }

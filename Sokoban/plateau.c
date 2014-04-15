@@ -126,7 +126,6 @@ plateau_t * charger_plateau(const char * filename)
 {
     int i;
     int j;
-    char element;
     int l_file;
     int h_file;
     plateau_t * res;
@@ -134,6 +133,16 @@ plateau_t * charger_plateau(const char * filename)
     fscanf(fichier, "%d %d", &h_file, &l_file);
     res = creer_plateau(h_file, l_file);
     fseek(fichier,2,SEEK_CUR);
+
+    for(i = 0; i < res -> h; i += 1)
+    {
+        for(j = 0; j < res -> l; j += 1)
+        {
+            res->mobile[i][j]= ' ';
+        }
+    }
+
+
     for(i = 0; i < res -> h; i += 1)
     {
         for(j = 0; j < res -> l; j += 1)
@@ -156,6 +165,7 @@ plateau_t * charger_plateau(const char * filename)
 
         }
     }
+
     if(tester_plateau(res))
     {
         res = NULL;

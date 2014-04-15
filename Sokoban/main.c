@@ -5,12 +5,8 @@
 
 int main()
 {
-    const char * fichier = "Sokoban Plateaux/test1.map";
+    const char * fichier = "Sokoban Plateaux/test2.map";
     partie_t * res = creer_partie(fichier, "Bob");
-    while(1)
-    {
-        afficher_partie(res);
-        jouer_coup(res);
-    }
+    infos(res);
     return EXIT_SUCCESS;
 }
