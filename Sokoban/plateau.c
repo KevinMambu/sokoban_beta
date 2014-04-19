@@ -139,6 +139,7 @@ plateau_t * charger_plateau(const char * filename)
         for(j = 0; j < res -> l; j += 1)
         {
             res->mobile[i][j]= ' ';
+            res->statique[i][j]= '.';
         }
     }
 

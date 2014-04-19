@@ -6,7 +6,7 @@
 int main()
 {
     int debug = 0;
-    const char * fichier = "Sokoban Plateaux/test2.map";
+    const char * fichier = "Sokoban Plateaux/test_deplacement.map";
     if(!debug)
     {
         nouvelle_partie(fichier, "Bob");

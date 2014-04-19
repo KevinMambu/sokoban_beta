@@ -78,55 +78,55 @@ int coup_autorise(partie_t * partie, char c)
     switch(c)
 	{
 		case 'q':
-			if((contenu_case(partie -> plateau,(partie -> joueur -> x - 1),(partie -> joueur -> y)) != 'M'))
+			if((contenu_case(partie -> plateau,(partie -> joueur -> y),(partie -> joueur -> x - 1)) == 'M'))
 			{
-				return 1;
+				return 0;
 			}
 			break;
 		case 'Q':
-			if((contenu_case(partie -> plateau,(partie -> joueur -> x - 1),(partie -> joueur -> y)) != 'M'))
+			if((contenu_case(partie -> plateau,(partie -> joueur -> y),(partie -> joueur -> x - 1)) == 'M'))
 			{
-				return 1;
+				return 0;
 			}
 			break;
 		case 'z':
-			if((contenu_case(partie -> plateau,(partie -> joueur -> x),(partie -> joueur -> y - 1)) != 'M'))
+			if((contenu_case(partie -> plateau,(partie -> joueur -> y - 1),(partie -> joueur -> x)) == 'M'))
 			{
-				return 1;
+				return 0;
 			}
 			break;
 		case 'Z':
-			if((contenu_case(partie -> plateau,(partie -> joueur -> x),(partie -> joueur -> y - 1)) != 'M'))
+			if((contenu_case(partie -> plateau,(partie -> joueur -> y - 1),(partie -> joueur -> x)) == 'M'))
 			{
-				return 1;
+				return 0;
 			}
 			break;
 		case 's':
-			if((contenu_case(partie -> plateau,(partie -> joueur -> x),(partie -> joueur -> y + 1)) != 'M'))
+			if((contenu_case(partie -> plateau,(partie -> joueur -> y + 1),(partie -> joueur -> x)) == 'M'))
 			{
-				return 1;
+				return 0;
 			}
 			break;
 		case 'S':
-			if((contenu_case(partie -> plateau,(partie -> joueur -> x),(partie -> joueur -> y + 1)) != 'M'))
+			if((contenu_case(partie -> plateau,(partie -> joueur -> y + 1),(partie -> joueur -> x)) == 'M'))
 			{
-				return 1;
+				return 0;
 			}
 			break;
 		case 'd':
-			if((contenu_case(partie -> plateau,(partie -> joueur -> x + 1),(partie -> joueur -> y)) != 'M'))
+			if((contenu_case(partie -> plateau,(partie -> joueur -> y),(partie -> joueur -> x + 1)) == 'M'))
 			{
-				return 1;
+				return 0;
 			}
 			break;
 		case 'D':
-			if((contenu_case(partie -> plateau,(partie -> joueur -> x + 1),(partie -> joueur -> y)) != 'M'))
+			if((contenu_case(partie -> plateau,(partie -> joueur -> y),(partie -> joueur -> x + 1)) == 'M'))
 			{
-				return 1;
+				return 0;
 			}
 			break;
 	}
-	return 0;
+	return 1;
 }
 
 void detruire_partie(partie_t * partie)
