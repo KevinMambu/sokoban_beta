@@ -25,6 +25,8 @@ int coup_autorise(partie_t * partie, char c);
 void jouer_coup(partie_t * partie);
 void afficher_partie(partie_t * partie);
 void infos(partie_t * partie);
+int coup_autorise_caisse(partie_t * partie, int y_caisse, int x_caisse, char c);
+void jouer_coup_caisse(partie_t * partie, int y_caisse, int x_caisse, char c);
+int chercher_arrivees(partie_t * partie, int x, int y);
 
-
-#endif // _PARTIE_
+#endif

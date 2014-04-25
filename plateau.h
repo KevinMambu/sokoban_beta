@@ -16,4 +16,4 @@ void modifier_contenu_case(plateau_t * p, int x, int y, char v);
 plateau_t * charger_plateau(const char * filename);
 int tester_plateau(plateau_t * p);
 
-#endif // _PLATEAU_
+#endif
